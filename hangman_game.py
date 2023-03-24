@@ -7,7 +7,7 @@ word_length = len(chosen_word)
 end_of_game = False
 lives = 6
 
-from hangman_art import logo
+from hangman_logo import logo
 print(logo)
 
 display = []
@@ -37,5 +37,5 @@ while not end_of_game:
         end_of_game = True
         print("You win.")
 
-    from hangman_art import stages
+    from hangman_logo import stages
     print(stages[lives])
