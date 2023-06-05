@@ -6,13 +6,13 @@ class Nurse(pygame.sprite.Sprite):
 
         # based setup
         super().__init__(groups) # init the parent class
-        self.image = pygame.image.load("../nurse_covid_game/graphics/nurse.png").convert_alpha()
+        self.image = pygame.image.load("/graphics/nurse.png").convert_alpha()
         self.rect = self.image.get_rect(center=(WINDOW_WIDTH /2, WINDOW_HEIGHT /2))
         self.mask = pygame.mask.from_surface(self.image) # it hepls to get rid of blank space around image
         self.can_throw = True # -> set timer
         self.throw_time = None # -> set timer
-        self.throw_sound = pygame.mixer.Sound("../nurse_covid_game/sounds/throw.wav")
-        self.end_game_sound = pygame.mixer.Sound("../nurse_covid_game/sounds/siren.wav")
+        self.throw_sound = pygame.mixer.Sound("/sounds/throw.wav")
+        self.end_game_sound = pygame.mixer.Sound("/sounds/siren.wav")
 
     def throw_timer(self): # timer of throwing a syringe
         if not self.can_throw:
@@ -50,7 +50,7 @@ class Syringe(pygame.sprite.Sprite):
 
         # basic setup
         super().__init__(groups)
-        self.image = pygame.image.load("../nurse_covid_game/graphics/syringe.png").convert_alpha()
+        self.image = pygame.image.load("/graphics/syringe.png").convert_alpha()
         self.rect = self.image.get_rect(midbottom=pos)
         self.mask = pygame.mask.from_surface(self.image)
 
@@ -58,7 +58,7 @@ class Syringe(pygame.sprite.Sprite):
         self.pos = pygame.math.Vector2(self.rect.topleft)
         self.direction = pygame.math.Vector2(0, -1)
         self.speed = 600
-        self.exposion_sound = pygame.mixer.Sound("../nurse_covid_game/sounds/explosion.wav")
+        self.exposion_sound = pygame.mixer.Sound("/sounds/explosion.wav")
 
     def virus_collision(self):
         if pygame.sprite.spritecollide(self, covid_group, True, pygame.sprite.collide_mask):
@@ -79,7 +79,7 @@ class Covid19(pygame.sprite.Sprite):
 
         # basic setup
         super().__init__(groups)
-        self.image = pygame.image.load("../nurse_covid_game/graphics/covid.png").convert_alpha()
+        self.image = pygame.image.load("/graphics/covid.png").convert_alpha()
         self.rect = self.image.get_rect(center=pos)
         self.mask = pygame.mask.from_surface(self.image)
 
@@ -97,7 +97,7 @@ class Covid19(pygame.sprite.Sprite):
 
 class Game_Time:
     def __init__(self):
-        self.font = pygame.font.Font("../nurse_covid_game/graphics/gta.otf", 30)
+        self.font = pygame.font.Font("/graphics/gta.otf", 30)
 
     def display(self):
         time_text = f"Time: {pygame.time.get_ticks() // 1000}" # time in seconds
@@ -117,7 +117,7 @@ pygame.display.set_caption("Nurse Covid-Killer")
 clock = pygame.time.Clock()
 
 # background
-bg_surf = pygame.image.load("../nurse_covid_game/graphics/background.jpg").convert()
+bg_surf = pygame.image.load("/graphics/background.jpg").convert()
 
 # sprite groups
 nurse_group = pygame.sprite.Group()
@@ -131,7 +131,7 @@ nurse = Nurse(nurse_group)
 covid_timer = pygame.event.custom_type()
 pygame.time.set_timer(covid_timer, 400)
 game_time = Game_Time()
-bg_music = pygame.mixer.Sound("../nurse_covid_game/sounds/background.wav")
+bg_music = pygame.mixer.Sound("/sounds/background.wav")
 bg_music.play(loops=-1)
 
 while True:
