@@ -146,7 +146,6 @@ while True:
 
     # delta time
     dt = clock.tick() / 1000
-
     display_surface.blit(bg_surf, (0, 0))
 
     # updates
